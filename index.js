@@ -5,20 +5,24 @@ const button1 = document.getElementById("button1")
 const button2 = document.getElementById("button2")
 const button3 = document.getElementById("button3")
 const invoice = document.getElementById("invoice")
+const remove1 = document.getElementById("remove1")
+const remove2 = document.getElementById("remove2")
+const remove3 = document.getElementById("remove3")
 
 let ulEl = document.getElementById("ul-el")
 let ulEll = document.getElementById("ul-ell")
-let ulRemove = document.getElementById("ul-remove")
 let totalEl = document.getElementById("total")
 let total = 0
+let totalButton = 0
 
 button1.addEventListener("click",function(){
     if(array1[0] != "Wash Car" && array1[1] != "Wash Car" && array1[2] != "Wash Car"){
         array1.push("Wash Car")
-        array2.push("$10")
+        array2.push("$10")  
         total += 10
         totalEl.textContent = ""
-        totalEl.textContent = total      
+        totalEl.textContent = total
+        totalButton += 1    
         renderList()
     }
 })
@@ -30,6 +34,7 @@ button2.addEventListener("click",function(){
         total += 20
         totalEl.textContent = ""
         totalEl.textContent = total
+        totalButton += 1
         renderList()
     }
 })
@@ -41,6 +46,7 @@ button3.addEventListener("click",function(){
         total += 30
         totalEl.textContent= ""
         totalEl.textContent = total
+        totalButton += 1
         renderList()
     }
 })
@@ -52,8 +58,11 @@ invoice.addEventListener("click", function(){
     }
     renderList()
     total = 0
-    ulRemove.innerHTML = ""
     totalEl.textContent = "$ 0"
+    remove1.style.display="none"
+    remove2.style.display="none"
+    remove3.style.display="none"
+    
 })
 
 function renderList(){
@@ -67,5 +76,14 @@ function renderList(){
         listItemss += `<br><li> ${array2[i]}</li><br>`
     }
     ulEll.innerHTML = listItemss
-    ulRemove.innerHTML += `<br><li><button id = "remove">Remove</button></li><br>`
+    if(totalButton === 1){
+        remove1.style.display="block"
+    }else if(totalButton === 2){
+        remove2.style.display="block"
+    }else if(totalButton === 3){
+        remove3.style.display="block"
+    }
 }
+
+const removeButton = document.getElementById("remove1")
+
